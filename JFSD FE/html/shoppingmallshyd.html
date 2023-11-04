@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+
+  .navbar {
+    height: 100vh;
+    width: 300px;
+    position: fixed;
+    left: -300px;
+    top: 0;
+    background-color: #222;
+    color: #fff;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    font-size: 16px;
+  }
+
+  .navbar img.top-image {
+    display: block;
+    width: 100%;
+    height: 25%;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s, background-color 0.3s;
+  }
+
+  .navbar a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+
+  .navbar a:hover {
+    color: #ffcc00;
+    background-color: #444;
+  }
+
+  .navbar a:hover::before {
+    background-color: #ffcc00;
+  }
+
+  .separator {
+    margin: 10px 0;
+    border-top: 1px solid #555;
+  }
+  .service-icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+
+  .open-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1;
+  }
+
+  .open-btn-icon {
+    font-size: 24px;
+  }
+
+  .open-btn.active {
+    display: none;
+  }
+
+  .open-btn:hover {
+    background-color: #444;
+  }
+
+  .open-btn:focus {
+    outline: none;
+  }
+  .welcome-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 0 20px;
+    text-align: center;
+    margin-bottom: 0px;
+  }
+  .welcome-heading {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  .greetings {
+    font-size: 24px;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  .greetings em {
+    font-weight: bold;
+    color: #111112;
+  }
+  .gallery-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .gallery-image {
+    width: 48%;
+    margin-bottom: 10px;
+  }
+  .social-media-section {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .social-media-icon {
+    font-size: 24px;
+    color: #b90c18;
+    margin: 0 10px;
+    transition: color 0.3s;
+  }
+  .social-media-icon:hover {
+    color: #d3151e;
+  }
+  .social-media-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login-register-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .login-register-button:hover {
+    background-color: #444;
+    color: #fff;
+  }
+  *,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+}
+
+.main {
+  margin: 0 auto;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cards_item {
+  display: flex;
+  padding: 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  height: 400px;
+}
+
+.card_image {
+  max-height: 250px;
+  margin-top: -24px;
+  img {
+    width: 100%;
+    max-width: 800px;
+    height: 50%;
+    object-fit: cover;
+  }
+  
+  &:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100px;
+    position: relative;
+    top: -100px;
+    background: linear-gradient(0deg, #091014 10%, rgba(0, 0, 0, 0) 100%);
+  }
+}
+
+.card {
+    background-color: #091014;
+    border-radius: 0.25rem;
+    box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+.card_content {
+  padding: 1rem;
+  z-index: 1;
+  display: block;
+}
+
+.card_title {
+  font-family: 'Lobster', cursive;
+  font-size: 35px;
+  line-height: 72px;
+  margin-top: 10px;
+  margin-bottom: 24px;
+  text-shadow: black 1px 0 15px;
+  color: rgb(255, 255, 255);
+}
+
+.card_text {
+  color: #DDDACB;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+  p {
+    max-width: 700px;
+  }
+}
+
+.card_price {
+  position: relative;
+  top: 10px;
+  right: 16px;
+  text-align: right;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  height: 24px;
+  font-size: 36px;
+  font-weight: 400;
+  text-shadow: black 3px 0px 6px;
+}
+
+#item_fig .card:after {
+  content: "Seasonal";
+  font-family: "Raleway", sans-serif;
+  color: rgba(234, 225, 175, 0.8);
+  font-weight: 600;
+   font-style: italic;
+  text-transform: uppercase;
+  display: block;
+  width: 10ch;
+  height: 1.5em;
+  padding: 0.2em 0.4em;
+  position: relative;
+  bottom: calc(100% - 2.5em);
+  left: 1em;
+}
+.yellow-button {
+    background-color: yellow;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+
+  .yellow-button:hover {
+    background-color: gold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .yellow-button:active {
+    transform: scale(0.95);
+  }
+
+  .styled-text {
+    font-family: "Arial", sans-serif;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+</style>
+</head>
+<body>
+  <button class="open-btn" onclick="toggleNavbar()">
+    <span class="open-btn-icon">☰</span>
+  </button>
+  <div class="navbar" id="navbar">
+    <a href="#" onclick="closeNavbar();"><span class="service-icon">◁</span> Back</a>
+    <img src="../images/hyderabad.jpg" alt="Navbar Image" class="top-image">
+    <a href="navbarofhyderabad.html"><span class="service-icon">🏠</span> Home</a>
+    <div class="separator"></div>
+    <a href="abouthyd.html"><span class="service-icon">ℹ️</span> About the City</a>
+    <div class="separator"></div>
+    <a href="touristattractionshyd.html"><span class="service-icon">🏞️</span> Tourist Attractions</a>
+    <div class="separator"></div>
+    <a href="healthcareserviceshyd.html"><span class="service-icon">🏥</span> HealthCare Services</a>
+    <div class="separator"></div>
+    <a href="hotelshyd.html"><span class="service-icon">🏨</span> Hotels</a>
+    <div class="separator"></div>
+    <a href="transportserviceshyd.html"><span class="service-icon">🚆🚌</span> Transportation Services</a>
+    <div class="separator"></div>
+    <a href="collegeshyd.html"><span class="service-icon">🏛️🏫</span> Educational Institutions</a>
+    <div class="separator"></div>
+    <a href="jobshyd.html"><span class="service-icon">💼</span>Companies/Job Findings</a>
+    <div class="separator"></div>
+    <a href="shoppingmallshyd.html"><span class="service-icon">🛍️</span> Shopping Malls</a>
+    <div class="separator"></div>
+    <a href="conatcthyd.html"><span class="service-icon">📞</span> Contact</a>
+  </div>
+
+ <!--<button onclick="window.open('https://www.google.com/maps?q=Hyderabad', '_blank')" class="map-button">View on Google Maps</button>-->
+
+  <div class="main">
+    <ul class="cards">
+      <li class="cards_item" id="item_salad">
+        <div class="card">
+          <div class="card_price">
+            <a href="https://goo.gl/maps/ptCuwVe8ndYJ8xjq6" target="_blank" class="yellow-button">
+                <span class="styled-text">Directions</span>
+              </a>
+        </div>
+          <div class="card_image"><img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000X650-21.jpg" alt="mixed vegetable salad in a mason jar. "></div>
+          <div class="card_content">
+            <h2 class="card_title">
+  City Centre Shopping Mall</h2>
+            <div class="card_text">
+             
+            </div>
+          </div>
+        </div>
+      </li>
+  
+      <li class="cards_item" id="item_reuben">
+        <div class="card">
+          <div class="card_price">
+            <a href="https://goo.gl/maps/rGBQVB52pxqP3BUz9" target="_blank" class="yellow-button">
+                <span class="styled-text">Directions</span>
+              </a></div>
+          <div class="card_image"><img src="https://www.fabhotels.com/blog/wp-content/uploads/2018/10/1000X650-22.jpg"></div>
+          <div class="card_content">
+            <h2 class="card_title">Hyderabad Central Mall</h2>
+            <div class="card_text">
+              
+            </div>
+          </div>
+        </div>
+      </li>
+      <li class="cards_item" id="item_fig">
+        <div class="card">
+          <div class="card_price">
+            <a href="https://goo.gl/maps/48aaaEaifGFV3Yys7" target="_blank" class="yellow-button">
+            <span class="styled-text">Directions</span>
+          </a>
+        </div>
+          <div class="card_image"><img src="https://wallpapers.com/images/high/christmas-light-shopping-mall-lo8foho102oal5mo.webp" ></div>
+          <div class="card_content">
+            <h3 class="card_title">FMG Mall</h3>
+            <div class="card_text">
+              
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const openBtn = document.querySelector('.open-btn');
+
+    function toggleNavbar() {
+      if (navbar.style.left === '-300px' || navbar.style.left === '') {
+        navbar.style.left = '0';
+        openBtn.classList.add('active');
+      } else {
+        navbar.style.left = '-300px';
+        openBtn.classList.remove('active');
+      }
+    }
+
+    function closeNavbar() {
+      navbar.style.left = '-300px';
+      openBtn.classList.remove('active');
+    }
+
+    const navLinks = document.querySelectorAll('.navbar a');
+    for (const link of navLinks) {
+      link.addEventListener('click', closeNavbar);
+    }
+  </script>
+</body>
+</html>

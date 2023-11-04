@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+
+  .navbar {
+    height: 100vh;
+    width: 300px;
+    position: fixed;
+    left: -300px;
+    top: 0;
+    background-color: #222;
+    color: #fff;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    font-size: 16px;
+  }
+
+  .navbar img.top-image {
+    display: block;
+    width: 100%;
+    height: 25%;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s, background-color 0.3s;
+  }
+
+  .navbar a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+
+  .navbar a:hover {
+    color: #ffcc00;
+    background-color: #444;
+  }
+
+  .navbar a:hover::before {
+    background-color: #ffcc00;
+  }
+
+  .separator {
+    margin: 10px 0;
+    border-top: 1px solid #555;
+  }
+  .service-icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+
+  .open-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 2;
+  }
+
+  .open-btn-icon {
+    font-size: 24px;
+  }
+
+  .open-btn.active {
+    display: none;
+  }
+
+  .open-btn:hover {
+    background-color: #444;
+  }
+
+  .open-btn:focus {
+    outline: none;
+  }
+  * {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Open Sans", sans-serif;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	justify-content: center;
+	align-items: center;
+	background: hsl(187 40% 98%);
+}
+
+img {
+	display: block;
+	width: 50%;
+}
+
+h2 {
+	margin: 0;
+	font-size: 1.4rem;
+}
+
+@media (min-width: 50em) {
+	h2 {
+		font-size: 1.8rem;
+	}
+}
+
+.cta {
+	--shadowColor: 187 60% 40%;
+	display: flex;
+	flex-wrap: wrap;
+	background: hsl(179, 49%, 53%);
+	max-width: 50rem;
+	width: 100%;
+	box-shadow: 0.65rem 0.65rem 0 hsl(var(--shadowColor) / 1);
+	border-radius: 0.8rem;
+	overflow: hidden;
+	border: 0.5rem solid;
+  margin-bottom: 2rem;
+  margin-left:150px;
+}
+
+.cta img {
+	aspect-ratio: 3 / 2;
+	object-fit: cover;
+	flex: 1 1 300px;
+	outline: 0.5rem solid;
+}
+
+.cta__text-column {
+	padding: min(2rem, 5vw) min(2rem, 5vw) min(2.5rem, 5vw);
+	flex: 1 0 50%;
+}
+
+.cta__text-column > * + * {
+	margin: min(1.5rem, 2.5vw) 0 0 0;
+}
+
+.cta a {
+	display: inline-block;
+	color: black;
+	padding: 0.5rem 1rem;
+	text-decoration: none;
+	background: hsl(195, 9%, 91%);
+	border-radius: 0.6rem;
+	font-weight: 700;
+	border: 0.35rem solid;
+}
+</style>
+</head>
+<body>
+  <button class="open-btn" onclick="toggleNavbar()">
+    <span class="open-btn-icon">☰</span>
+  </button>
+  <div class="navbar" id="navbar">
+    <a href="#" onclick="closeNavbar();"><span class="service-icon">◁</span> Back</a>
+    <img src="../images/hyderabad.jpg" alt="Navbar Image" class="top-image">
+    <a href="navbarofhyderabad.html"><span class="service-icon">🏠</span> Home</a>
+    <div class="separator"></div>
+    <a href="abouthyd.html"><span class="service-icon">ℹ️</span> About the City</a>
+    <div class="separator"></div>
+    <a href="touristattractionshyd.html"><span class="service-icon">🏞️</span> Tourist Attractions</a>
+    <div class="separator"></div>
+    <a href="healthcareserviceshyd.html"><span class="service-icon">🏥</span> HealthCare Services</a>
+    <div class="separator"></div>
+    <a href="hotelshyd.html"><span class="service-icon">🏨</span> Hotels</a>
+    <div class="separator"></div>
+    <a href="transportserviceshyd.html"><span class="service-icon">🚆🚌</span> Transportation Services</a>
+    <div class="separator"></div>
+    <a href="collegeshyd.html"><span class="service-icon">🏛️🏫</span> Educational Institutions</a>
+    <div class="separator"></div>
+    <a href="jobshyd.html"><span class="service-icon">💼</span>Companies/Job Findings</a>
+    <div class="separator"></div>
+    <a href="shoppingmallshyd.html"><span class="service-icon">🛍️</span> Shopping Malls</a>
+    <div class="separator"></div>
+    <a href="conatcthyd.html"><span class="service-icon">📞</span> Contact</a>
+  </div>
+  
+  <article class="cta">
+    <img src='../images/yashodahospitalhyd.jpg'>
+    <div class="cta__text-column">
+      <h2>YASHODA HOSPITAL</h2>
+      <p>India’s Most Advanced Multi-Specialty Hospital.<strong>Number of Beds-2100</strong><br><br> 
+      24/7 Emergency Services & Care <strong>||</strong> Right Diagnosis & Treatment <strong>||</strong> Best Team of Experts</p>
+      <p><Address>Rajbhavan Road, Somajiguda, Hyderabad</Address>Phone: +91 6366920627<br>
+      Email:query@yashodamail.com</p>
+      <a href="https://www.yashodahospitals.com/location/somajiguda//?utm_source=Google-Business-Page&utm_medium=Somajiguda" target="_blank" >Book Appointment</a>
+      <a href="https://goo.gl/maps/KLsxmbbLLfvf1k2G8" target="_blank" >Directions</a>
+    </div>
+  </article>
+  
+  <article class="cta">
+    <img src='../images/starthospitalshyd'>
+    <div class="cta__text-column">
+      <h2>STAR HOSPITAL</h2>
+      <p>One of the leading Multi Speciality Hospital in Hyderabad, India, Star Hospitals provides top-notch quality diagnostic services and best-in-class treatments. <strong>24x7 Service</strong><br><br>
+      Ambulance Service<strong>||</strong>Neurosurgeons<br>
+      Orthopedics<strong>||</strong>Cardiologists
+      <p><Address>Road.No.10,Banjara Hills,Hyderabad</Address>Phone: 040-44 777777<br>
+        Email:exceint@starhospitals.co.in   
+      </p>
+      <a href="https://starhospitals.in/" target="_blank">Book Appointment</a>
+      <a href="https://goo.gl/maps/oky7gzEVPQdmSyk56" target="_blank">Directions</a>
+    </div>
+  </article>
+
+  <article class="cta">
+    <img src='../images/kimshyderabad'>
+    <div class="cta__text-column">
+      <h2>KIMS</h2>
+      <p>KIMS Hospitals is one of the leading 1800 bed multi super speciality hospital in Hyderabad providing healthcare services for Cardiology, Neurology <strong>Number of Beds-4000</strong> <br><br>
+
+      Andrology and Infertility Center <strong>||</strong> Arthoscopy Center<strong>||</strong>
+      Bone and Joint Center
+      
+      <p><Address>Chitrapuri Colony,Gachibowli,Hyderabad</Address>Phone:  
+        040-44885000<br>
+        Email:assistance@kimshospitals.com </p>
+      </p>
+      <a href="https://www.kimshospitals.com/" target="_blank">Book Appointment</a>
+      <a href="hhttps://goo.gl/maps/YqLVVwwrXHspQYmV6" target="_blank">Directions</a>
+    </div>
+  </article>
+
+  <article class="cta">
+    <img src='../images/Gandhi-Hospital-hyd.jpg' alt='Small blue-grey yellow-breasted bird'>
+    <div class="cta__text-column">
+      <h2>GANDHI HOSPITAL</h2>
+      <p>Presently with operational bed strength of 2200, it is a premier institution of Post-doctoral medical education and training<br><br>
+
+      Government Hospital <strong>||</strong> First Open Heart Surgery <strong>||</strong> 24x7 Service
+
+      <p><Address>Padmarao Nagar Secunderabad</Address>Phone:040-27505566<br>
+        Email:supdt_gandhihospital@yahoo.co.in</p>
+      </p>
+      </p>
+      <a href="https://www.gandhihospital.telangana.gov.in/index.html" target="_blank">Book Appointment</a>
+      <a href="https://goo.gl/maps/Pr3mALvoMU8Byagn6" target="_blank">Directions</a>
+    </div>
+  </article>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const openBtn = document.querySelector('.open-btn');
+
+    function toggleNavbar() {
+      if (navbar.style.left === '-300px' || navbar.style.left === '') {
+        navbar.style.left = '0';
+        openBtn.classList.add('active');
+      } else {
+        navbar.style.left = '-300px';
+        openBtn.classList.remove('active');
+      }
+    }
+
+    function closeNavbar() {
+      navbar.style.left = '-300px';
+      openBtn.classList.remove('active');
+    }
+
+    const navLinks = document.querySelectorAll('.navbar a');
+    for (const link of navLinks) {
+      link.addEventListener('click', closeNavbar);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Major Cities</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+  }
+  .container {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+  }
+  .city-card {
+    width: 30%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .city-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  .city-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .city-content {
+    padding: 1.5rem;
+  }
+  .city-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .city-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  .button {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  .button:hover {
+    background-color: #0056b3;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="city-card">
+      <img class="city-image" src="../images/hyderabad.jpg" alt="City 1">
+      <div class="city-content">
+        <h2 class="city-name">HYDERABAD</h2>
+        <p class="city-description">Hyderabad is the capital and largest city of the Indian state of Telangana. It occupies 650 km2 (250 sq mi) on the Deccan Plateau along the banks of the Musi River, in the northern part of Southern India.</p>
+        <a class="button" href="navbarofhyderabad.html">Learn More</a>
+      </div>
+    </div>
+    <div class="city-card">
+      <img class="city-image" src="../images/mumbai.jpg" alt="City 2">
+      <div class="city-content">
+        <h2 class="city-name">MUMBAI</h2>
+        <p class="city-description">Mumbai (also known as Bombay, the official name until 1995) is the capital city of the Indian state of Maharashtra. Mumbai lies on the Konkan coast on the west coast of India and has a deep natural harbour.
+        </p>
+        <a class="button" href="#">Learn More</a>
+      </div>
+    </div>
+    <div class="city-card">
+      <img class="city-image" src="../images/bangalore.jpg" alt="City 3">
+      <div class="city-content">
+        <h2 class="city-name">BANGALORE</h2>
+        <p class="city-description">Bangalore, officially known as Bengaluru, is the Capital of the Indian State of Karnataka . It has a population of over ten million, making it a megacity and the Third populous City and 5th most populous urban agglomeration in India. It is located in Southern India on the Deccan Pleteau .</p>
+        <a class="button" href="#">Learn More</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

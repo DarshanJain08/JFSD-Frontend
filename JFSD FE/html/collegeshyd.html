@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+  }
+
+  .navbar {
+    height: 100vh;
+    width: 300px;
+    position: fixed;
+    left: -300px;
+    top: 0;
+    background-color: #222;
+    color: #fff;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    font-size: 16px;
+    z-index: 2;
+  }
+
+  .navbar img.top-image {
+    display: block;
+    width: 100%;
+    height: 25%;
+  }
+
+  .navbar a {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s, background-color 0.3s;
+  }
+
+  .navbar a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+
+  .navbar a:hover {
+    color: #ffcc00;
+    background-color: #444;
+  }
+
+  .navbar a:hover::before {
+    background-color: #ffcc00;
+  }
+
+  .separator {
+    margin: 10px 0;
+    border-top: 1px solid #555;
+  }
+  .service-icon {
+    margin-right: 10px;
+    font-size: 1.2em;
+  }
+
+  .open-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    z-index: 1;
+  }
+
+  .open-btn-icon {
+    font-size: 24px;
+  }
+
+  .open-btn.active {
+    display: none;
+  }
+
+  .open-btn:hover {
+    background-color: #444;
+  }
+
+  .open-btn:focus {
+    outline: none;
+  }
+
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #333;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: white;
+  background-attachment: fixed;
+}
+
+.content {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1000px;
+}
+
+.heading {
+  width: 100%;
+  margin-left: 1rem;
+  font-weight: 900;
+  font-size: 1.618rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1ch;
+  line-height: 1;
+  padding-bottom: 0.5em;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.heading:after {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(135deg, adjust-hue(white, -20deg), white);
+  bottom: 0;
+}
+
+.description {
+  width: 100%;
+  margin-top: 0;
+  margin-left: 1rem;
+  margin-bottom: 3rem;
+}
+
+.card {
+  color: inherit;
+  cursor: pointer;
+  width: calc(33% - 2rem);
+  min-width: calc(33% - 2rem);
+  height: 400px;
+  min-height: 400px;
+  perspective: 1000px;
+  margin: 1rem;
+  position: relative;
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    width: calc(50% - 2rem);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .card {
+    width: 100%;
+  }
+}
+
+.front,
+.back {
+  display: flex;
+  border-radius: 6px;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: ease-in-out 600ms;
+}
+
+.front {
+  background-size: cover;
+  padding: 2rem;
+  font-size: 1.618rem;
+  font-weight: 600;
+  color: #fff;
+  overflow: hidden;
+  font-family: Poppins, sans-serif;
+}
+
+.front:before {
+  position: absolute;
+  display: block;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, adjust-hue(white, -20deg), white);
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.card:hover .front {
+  transform: rotateY(180deg);
+}
+
+.card:nth-child(even):hover .front {
+  transform: rotateY(-180deg);
+}
+
+.back {
+  background: hsl(194, 100%, 80%);
+  transform: rotateY(-180deg);
+  padding: 0 2em;
+}
+
+.back .button {
+  background: linear-gradient(135deg, adjust-hue(white, -20deg), white);
+}
+
+.back .button:before {
+  box-shadow: 0 0 10px 10px rgba(white, 0.25);
+  background-color: rgba(white, 0.25);
+}
+
+.card:hover .back {
+  transform: rotateY(0deg);
+}
+
+.card:nth-child(even) .back {
+  transform: rotateY(180deg);
+}
+
+.card:nth-child(even):hover .back {
+  transform: rotateY(0deg);
+}
+
+.button {
+  height: 40px;
+  transform: translateZ(40px);
+  cursor: pointer;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  font-weight: bold;
+  color: #fff;
+  padding: 0.5em 1em;
+  border-radius: 100px;
+  font: inherit;
+  border: none;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 300ms ease;
+  background-color: black;
+}
+
+.button:before {
+  transition: 300ms ease;
+  position: absolute;
+  display: block;
+  content: '';
+  transform: translateZ(-40px);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+  border-radius: 100px;
+  left: 10px;
+  top: 16px;
+}
+
+.button:hover {
+  transform: translateZ(55px);
+}
+
+.button:hover:before {
+  transform: translateZ(-55px);
+}
+
+.button:active {
+  transform: translateZ(20px);
+}
+
+.button:active:before {
+  transform: translateZ(-20px);
+  top: 12px;
+}
+
+.bordered-image {
+  border: 4px solid #333; /* You can adjust the border width and color as needed */
+}
+
+</style>
+</head>
+<body>
+  <button class="open-btn" onclick="toggleNavbar()">
+    <span class="open-btn-icon">☰</span>
+  </button>
+  <div class="navbar" id="navbar">
+    <a href="#" onclick="closeNavbar();"><span class="service-icon">◁</span> Back</a>
+    <img src="../images/hyderabad.jpg" alt="Navbar Image" class="top-image">
+    <a href="navbarofhyderabad.html"><span class="service-icon">🏠</span> Home</a>
+    <div class="separator"></div>
+    <a href="abouthyd.html"><span class="service-icon">ℹ️</span> About the City</a>
+    <div class="separator"></div>
+    <a href="touristattractionshyd.html"><span class="service-icon">🏞️</span> Tourist Attractions</a>
+    <div class="separator"></div>
+    <a href="healthcareserviceshyd.html"><span class="service-icon">🏥</span> HealthCare Services</a>
+    <div class="separator"></div>
+    <a href="hotelshyd.html"><span class="service-icon">🏨</span> Hotels</a>
+    <div class="separator"></div>
+    <a href="transportserviceshyd.html"><span class="service-icon">🚆🚌</span> Transportation Services</a>
+    <div class="separator"></div>
+    <a href="collegeshyd.html"><span class="service-icon">🏛️🏫</span> Educational Institutions</a>
+    <div class="separator"></div>
+    <a href="jobshyd.html"><span class="service-icon">💼</span>Companies/Job Findings</a>
+    <div class="separator"></div>
+    <a href="shoppingmallshyd.html"><span class="service-icon">🛍️</span> Shopping Malls</a>
+    <div class="separator"></div>
+    <a href="conatcthyd.html"><span class="service-icon">📞</span> Contact</a>
+  </div>
+  
+  <div class="content">
+    <div class="card">
+      <div class="front bordered-image" style="background-image: url(../images/osmaniahyd.jpg)">
+      </div>
+      <div class="back">
+        <div>
+          <h3>Osmania University</h3>
+          <b>Address:</b> Amberpet, Hyderabad, Telangana
+          <h4>Phone: 040 2709 8043</h4>
+          <b>Email</b> : osmania@gmail.com
+          <button class="button custom-button" href="https://www.google.com/maps/search/?api=1&query=Hyderabad" target="_blank" >Explore</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="front bordered-image" style="background-image: url(../images/iiithyd.jpeg)">
+      </div>
+      <div class="back">
+        <div>
+          <h3>IIIT Hyderabad</h3>
+          <b>Address : </b> Professor CR Rao Rd, Gachibowli, Hyderabad, Telangana 500032
+          <h4>Phone: 040 6653 1000</h4>
+          <b>Email</b> : iith@gmail.com
+          <button class="button custom-button" href="https://www.google.com/maps/search/?api=1&query=Hyderabad" target="_blank">Explore</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="front bordered-image" style="background-image: url(../images/bitshyd.jpg)">
+      </div>
+      <div class="back">
+        <div>
+          <h3>BITS Hyderabad</h3>
+          <b>Address : </b> Professor CR Rao Rd, Gachibowli, Hyderabad, Telangana 500032
+          <h4>Phone: 040 6653 1000</h4>
+          <b>Email</b> : bitsh@gmail.com 
+          <button class="button custom-button" href="https://www.google.com/maps/search/?api=1&query=Hyderabad" target="_blank">Explore</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="front bordered-image" style="background-image: url(../images/isbhyd.jpg)">
+      </div>
+      <div class="back">
+        <div>
+          <h3>Indian School of Business</h3>
+          <b>Address: </b>Gachibowli, Hyderabad, Telangana 500111
+          <h4>Phone: 040 2300 7000</h4>
+          <b>Email</b> : isbhyd@gmail.com
+          <button class="button custom-button" href="https://www.google.com/maps/search/?api=1&query=Hyderabad" target="_blank">Explore</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="front bordered-image" style="background-image: url(../images/cbithyd.jpg)">
+      </div>
+      <div class="back">
+        <div>
+          <h3>CBIT Hyderabad</h3>
+          <b>Address:</b> Osman Sagar Rd, Kokapet, Gandipet, Hyderabad, Telangana 500075
+          <h4>Phone: 084669 97201</h4>
+          <b>Email</b> : cbit@gmail.com
+          <button class="button custom-button" href="https://www.google.com/maps/search/?api=1&query=Hyderabad" target="_blank">Explore</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="front bordered-image" style="background-image: url(../images/jntuhhyd.jpg)">
+      </div>
+      <div class="back">
+        <div>
+          <h3>JNTU Hyderabad</h3>
+          <b>Address:</b> F9VR+8H2, Ashok Nagar, Kukatpally Housing Board Colony, Kukatpally, Hyderabad, Telangana 500085
+          <h4>Phone: 040 2315 8661</h4>
+          <b>Email</b> : jntuh@gmail.com
+          <button class="button custom-button" href="https://www.google.com/maps/search/?api=1&query=Hyderabad" target="_blank">Explore</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const openBtn = document.querySelector('.open-btn');
+
+    function toggleNavbar() {
+      if (navbar.style.left === '-300px' || navbar.style.left === '') {
+        navbar.style.left = '0';
+        openBtn.classList.add('active');
+      } else {
+        navbar.style.left = '-300px';
+        openBtn.classList.remove('active');
+      }
+    }
+
+    function closeNavbar() {
+      navbar.style.left = '-300px';
+      openBtn.classList.remove('active');
+    }
+
+    const navLinks = document.querySelectorAll('.navbar a');
+    for (const link of navLinks) {
+      link.addEventListener('click', closeNavbar);
+    }
+
+  </script>
+</body>
+</html>
